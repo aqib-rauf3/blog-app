@@ -1,0 +1,47 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Dashboard - DevBlog</title> 
+    <link rel="stylesheet" href="css/style.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> 
+</head> 
+<body> 
+    <nav class="navbar"> 
+        <div class="container"> 
+            <div class="nav-brand"> 
+                <a href="index.html">Dev<span>Blog</span></a> 
+            </div> 
+            <div class="nav-menu"> 
+                <a href="index.html">Home</a> 
+                <a href="dashboard.html" class="active">Dashboard</a> 
+            </div> 
+            <div class="nav-auth"> 
+                <div id="user-menu"> 
+                    <span id="username-display"></span> 
+                    <button id="logout-btn" class="btn-logout">Logout</button> 
+                </div> 
+            </div> 
+        </div> 
+    </nav> 
+ECHO is off.
+    <div class="container" style="margin-top: 100px; padding: 20px;"> 
+        <h1 style="color: #2c3e50;">Dashboard</h1> 
+        <div style="background: white; padding: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-top: 30px;"> 
+            <h2 style="color: #3498db;">Welcome to your Dashboard!</h2> 
+            <p>You are logged in successfully.</p> 
+            <div style="margin-top: 30px;"> 
+                <h3>Your Actions:</h3> 
+                <div style="display: flex; gap: 20px; margin-top: 20px;"> 
+                    <button style="padding: 10px 20px; background: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer;">Create New Post</button> 
+                    <button style="padding: 10px 20px; background: #2ecc71; color: white; border: none; border-radius: 5px; cursor: pointer;">View My Posts</button> 
+                    <button style="padding: 10px 20px; background: #9b59b6; color: white; border: none; border-radius: 5px; cursor: pointer;">Edit Profile</button> 
+                </div> 
+            </div> 
+        </div> 
+    </div> 
+ECHO is off.
+    <script src="js/auth.js"></script> 
+</body> 
+</html> 

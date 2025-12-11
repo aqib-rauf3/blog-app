@@ -1,0 +1,82 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Blog with Database v3.0</title> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> 
+    <style> 
+        * { margin: 0; padding: 0; box-sizing: border-box; } 
+        body { font-family: Arial, sans-serif; background: #f0f2f5; color: #333; padding: 20px; } 
+        .container { max-width: 1200px; margin: 0 auto; } 
+        header { text-align: center; margin-bottom: 30px; } 
+        h1 { color: #2c3e50; margin-bottom: 10px; } 
+        .card { background: white; padding: 20px; border-radius: 10px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); } 
+        .btn { padding: 10px 20px; background: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer; margin: 5px; } 
+        .btn:hover { background: #2980b9; } 
+        .posts-container { margin-top: 30px; } 
+        .post { border-bottom: 1px solid #eee; padding: 15px 0; } 
+        .post h3 { color: #2c3e50; margin-bottom: 5px; } 
+        .post-meta { color: #7f8c8d; font-size: 0.9em; } 
+    </style> 
+</head> 
+<body> 
+    <div class="container"> 
+        <header> 
+            <h1><i class="fas fa-blog"></i> Blog with Database v3.0</h1> 
+            <p>Week 3: JWT Authentication + Create Posts</p> 
+        </header> 
+ 
+        <div class="card"> 
+            <h2><i class="fas fa-heartbeat"></i> System Health</h2> 
+            <button class="btn" onclick="checkHealth()"><i class="fas fa-stethoscope"></i> Check Health</button> 
+            <button class="btn" onclick="getPosts()"><i class="fas fa-sync-alt"></i> Refresh Posts</button> 
+            <div id="health-status">Click buttons to check system</div> 
+        </div> 
+ 
+        <div class="card"> 
+            <h2><i class="fas fa-newspaper"></i> Blog Posts</h2> 
+            <div id="posts-list">Loading posts...</div> 
+        </div> 
+    </div> 
+ 
+    <script> 
+        const API_URL = 'http://localhost:5001/api'; 
+ 
+        async function checkHealth() { 
+            const statusDiv = document.getElementById('health-status'); 
+            statusDiv.innerHTML = 'Checking...'; 
+            try { 
+                const response = await fetch(API_URL + '/health'); 
+                const data = await response.json(); 
+                statusDiv.innerHTML = \`Status: \${data.status\} - \${data.message\}\`; 
+            } catch (error) { 
+                statusDiv.innerHTML = \`Error: \${error.message\}\`; 
+            } 
+        } 
+ 
+        async function getPosts() { 
+            const postsDiv = document.getElementById('posts-list'); 
+            postsDiv.innerHTML = 'Loading...'; 
+            try { 
+                const response = await fetch(API_URL + '/posts'); 
+                const data = await response.json(); 
+                    postsDiv.innerHTML = data.posts.map(post =
+                        <div class="post"> 
+                            <h3>\${post.title}</h3> 
+                            <p>\${post.content}</p> 
+                        </div> 
+                    \`).join(''); 
+                } else { 
+                    postsDiv.innerHTML = 'No posts found.'; 
+                } 
+            } catch (error) { 
+                postsDiv.innerHTML = \`Error loading posts: \${error.message\}\`; 
+            } 
+        } 
+ 
+        // Load posts on page load 
+        document.addEventListener('DOMContentLoaded', getPosts); 
+    </script> 
+</body> 
+</html> 

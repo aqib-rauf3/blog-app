@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Blog App Test</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        .test { margin: 10px 0; padding: 10px; border: 1px solid #ddd; }
+        .pass { background: #d4edda; }
+        .fail { background: #f8d7da; }
+        button { margin: 5px; padding: 8px 15px; }
+    </style>
+</head>
+<body>
+    <h1>Blog Application Test</h1>
+    
+    <div class="test" id="test1">
+        <h3>Test 1: API Health</h3>
+        <button onclick="testHealth()">Test Health</button>
+        <div id="result1"></div>
+    </div>
+    
+    <div class="test" id="test2">
+        <h3>Test 2: Load Posts</h3>
+        <button onclick="testPosts()">Load Posts</button>
+        <div id="result2"></div>
+    </div>
+    
+    <div class="test" id="test3">
+        <h3>Test 3: Login</h3>
+        <button onclick="testLogin()">Test Login</button>
+        <div id="result3"></div>
+    </div>
+    
+    <script>
+        async function testHealth() {
+            try {
+                const response = await fetch('/api/health');
+                const data = await response.json();
+                document.getElementById('result1').innerHTML = 
+                    ` ${data.message} (v${data.version})`;
+                document.getElementById('test1').className = 'test pass';
+            } catch (error) {
+                document.getElementById('result1').innerHTML = 
+                    ` Error: ${error.message}`;
+                document.getElementById('test1').className = 'test fail';
+            }
+        }
+        
+        async function testPosts() {
+            try {
+                const response = await fetch('/api/posts');
+                const data = await response.json();
+                document.getElementById('result2').innerHTML = 
+                    ` ${data.count} posts loaded:<br>` +
+                    data.posts.map(p => `- ${p.title}`).join('<br>');
+                document.getElementById('test2').className = 'test pass';
+            } catch (error) {
+                document.getElementById('result2').innerHTML = 
+                    ` Error: ${error.message}`;
+                document.getElementById('test2').className = 'test fail';
+            }
+        }
+        
+        async function testLogin() {
+            try {
+                const response = await fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        username: 'admin',
+                        password: 'admin123'
+                    })
+                });
+                const data = await response.json();
+                if (data.success) {
+                    document.getElementById('result3').innerHTML = 
+                        ` Login successful: ${data.user.username}`;
+                    document.getElementById('test3').className = 'test pass';
+                } else {
+                    document.getElementById('result3').innerHTML = 
+                        ` Login failed: ${data.message}`;
+                    document.getElementById('test3').className = 'test fail';
+                }
+            } catch (error) {
+                document.getElementById('result3').innerHTML = 
+                    ` Error: ${error.message}`;
+                document.getElementById('test3').className = 'test fail';
+            }
+        }
+        
+        // Run initial tests
+        testHealth();
+        setTimeout(testPosts, 1000);
+        setTimeout(testLogin, 2000);
+    </script>
+</body>
+</html>

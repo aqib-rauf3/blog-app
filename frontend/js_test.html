@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>JavaScript Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .success { color: green; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <h1>JavaScript Test Page</h1>
+    
+    <div id="test1">
+        <h3>Test 1: Basic JavaScript</h3>
+        <div id="result1">Testing...</div>
+    </div>
+    
+    <div id="test2">
+        <h3>Test 2: Fetch API</h3>
+        <div id="result2">Testing...</div>
+    </div>
+    
+    <div id="test3">
+        <h3>Test 3: Local Storage</h3>
+        <div id="result3">Testing...</div>
+    </div>
+    
+    <script>
+        // Test 1: Basic JavaScript
+        try {
+            document.getElementById('result1').innerHTML = 
+                '<span class="success">✓ Basic JavaScript is working!</span>';
+            document.getElementById('result1').className = 'success';
+        } catch (error) {
+            document.getElementById('result1').innerHTML = 
+                '<span class="error">✗ JavaScript error: ' + error.message + '</span>';
+        }
+        
+        // Test 2: Fetch API
+        async function testFetch() {
+            try {
+                const response = await fetch('http://localhost:5001/api/health');
+                const data = await response.json();
+                document.getElementById('result2').innerHTML = 
+                    '<span class="success">✓ Fetch API working! Backend: ' + data.message + '</span>';
+                document.getElementById('result2').className = 'success';
+            } catch (error) {
+                document.getElementById('result2').innerHTML = 
+                    '<span class="error">✗ Fetch API error: ' + error.message + '</span>';
+            }
+        }
+        testFetch();
+        
+        // Test 3: Local Storage
+        try {
+            localStorage.setItem('test', 'value');
+            const value = localStorage.getItem('test');
+            if (value === 'value') {
+                document.getElementById('result3').innerHTML = 
+                    '<span class="success">✓ Local Storage is working!</span>';
+                document.getElementById('result3').className = 'success';
+            } else {
+                document.getElementById('result3').innerHTML = 
+                    '<span class="error">✗ Local Storage test failed</span>';
+            }
+        } catch (error) {
+            document.getElementById('result3').innerHTML = 
+                '<span class="error">✗ Local Storage error: ' + error.message + '</span>';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>DevBlog - Modern Technology Blog</title> 
+    <link rel="stylesheet" href="css/style.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> 
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet"> 
+</head> 
+<body> 
+    <nav class="navbar"> 
+        <div class="container"> 
+            <div class="nav-brand"> 
+                <a href="index.html">Dev<span>Blog</span></a> 
+            </div> 
+            <div class="nav-menu"> 
+                <a href="index.html" class="active">Home</a> 
+                <a href="#technology">Technology</a> 
+                <a href="#programming">Programming</a> 
+                <a href="#devops">DevOps</a> 
+                <a href="#cloud">Cloud</a> 
+                <a href="dashboard.html" id="dashboard-link" style="display:none;">Dashboard</a> 
+            </div> 
+            <div class="nav-auth"> 
+                <a href="login.html" class="btn-login" id="login-link">Login</a> 
+                <a href="register.html" class="btn-register" id="register-link">Register</a> 
+                <div id="user-menu" style="display:none;"> 
+                    <span id="username-display"></span> 
+                    <button id="logout-btn" class="btn-logout">Logout</button> 
+                </div> 
+            </div> 
+            <button class="menu-toggle"> 
+                <i class="fas fa-bars"></i> 
+            </button> 
+        </div> 
+    </nav> 
+ECHO is on.
+    <section class="hero"> 
+        <div class="container"> 
+            <div class="hero-content"> 
+                <h1 class="hero-title">Welcome to DevBlog</h1> 
+                <p class="hero-subtitle">Your source for technology insights, programming tutorials, and DevOps best practices</p> 
+                <a href="#featured-posts" class="btn-hero">Explore Articles</a> 
+            </div> 
+        </div> 
+    </section> 
+ECHO is on.
+    <section class="featured-posts" id="featured-posts"> 
+        <div class="container"> 
+            <h2 class="section-title">Featured Articles</h2> 
+            <div class="posts-grid" id="featured-posts-container"> 
+                <div class="loading">Loading featured posts...</div> 
+            </div> 
+        </div> 
+    </section> 
+ECHO is on.
+    <section class="recent-posts"> 
+        <div class="container"> 
+            <div class="section-header"> 
+                <h2 class="section-title">Latest Articles</h2> 
+                <a href="#" class="view-all">View All <i class="fas fa-arrow-right"></i></a> 
+            </div> 
+            <div class="recent-grid" id="recent-posts-container"> 
+            </div> 
+        </div> 
+    </section> 
+ECHO is on.
+    <section class="newsletter"> 
+        <div class="container"> 
+            <div class="newsletter-content"> 
+                <h2>Stay Updated</h2> 
+                <p>Subscribe to our newsletter for the latest articles and tutorials</p> 
+                <form id="newsletter-form"> 
+                    <input type="email" placeholder="Enter your email" required> 
+                    <button type="submit" class="btn-subscribe">Subscribe</button> 
+                </form> 
+            </div> 
+        </div> 
+    </section> 
+ECHO is on.
+    <footer class="footer"> 
+        <div class="container"> 
+            <div class="footer-grid"> 
+                <div class="footer-col"> 
+                    <h3>DevBlog</h3> 
+                    <p>A modern blog for developers, DevOps engineers, and technology enthusiasts.</p> 
+                    <div class="social-links"> 
+                        <a href="#"><i class="fab fa-twitter"></i></a> 
+                        <a href="#"><i class="fab fa-github"></i></a> 
+                        <a href="#"><i class="fab fa-linkedin"></i></a> 
+                    </div> 
+                </div> 
+                <div class="footer-col"> 
+                    <h4>Categories</h4> 
+                    <ul> 
+                        <li><a href="#technology">Technology</a></li> 
+                        <li><a href="#programming">Programming</a></li> 
+                        <li><a href="#devops">DevOps</a></li> 
+                        <li><a href="#cloud">Cloud Computing</a></li> 
+                    </ul> 
+                </div> 
+                <div class="footer-col"> 
+                    <h4>Quick Links</h4> 
+                    <ul> 
+                        <li><a href="index.html">Home</a></li> 
+                        <li><a href="#about">About</a></li> 
+                        <li><a href="#contact">Contact</a></li> 
+                        <li><a href="login.html">Login</a></li> 
+                    </ul> 
+                </div> 
+                <div class="footer-col"> 
+                    <h4>Contact</h4> 
+                    <p><i class="fas fa-envelope"></i> contact@devblog.com</p> 
+                    <p><i class="fas fa-phone"></i> +1 234 567 890</p> 
+                </div> 
+            </div> 
+            <div class="footer-bottom"> 
+                <p>&copy; 2025 DevBlog. All rights reserved.</p> 
+            </div> 
+        </div> 
+    </footer> 
+ECHO is on.
+    <script src="js/auth.js"></script> 
+    <script src="js/posts.js"></script> 
+    <script src="js/main.js"></script> 
+</body> 
+</html> 

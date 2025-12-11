@@ -1,0 +1,88 @@
+name: blog-with-db
+services:
+  backend:
+    build:
+      context: C:\devops-projects\blog-with-db\backend
+      dockerfile: Dockerfile
+    container_name: blog_backend
+    depends_on:
+      postgres:
+        condition: service_started
+        required: true
+      redis:
+        condition: service_started
+        required: true
+    environment:
+      DATABASE_URL: postgresql://bloguser:blogpass@postgres:5432/blogdb
+      FLASK_ENV: development
+      REDIS_URL: redis://redis:6379/0
+    networks:
+      default: null
+    ports:
+      - mode: ingress
+        target: 5001
+        published: "5001"
+        protocol: tcp
+  frontend:
+    build:
+      context: C:\devops-projects\blog-with-db\frontend
+      dockerfile: Dockerfile
+    container_name: blog_frontend
+    depends_on:
+      backend:
+        condition: service_started
+        required: true
+    networks:
+      default: null
+    ports:
+      - mode: ingress
+        target: 80
+        published: "8081"
+        protocol: tcp
+  postgres:
+    container_name: blog_postgres
+    environment:
+      POSTGRES_DB: blogdb
+      POSTGRES_PASSWORD: blogpass
+      POSTGRES_USER: bloguser
+    image: postgres:13-alpine
+    networks:
+      default: null
+    ports:
+      - mode: ingress
+        target: 5432
+        published: "5432"
+        protocol: tcp
+    volumes:
+      - type: volume
+        source: postgres_data
+        target: /var/lib/postgresql/data
+        volume: {}
+      - type: bind
+        source: C:\devops-projects\blog-with-db\database\init.sql
+        target: /docker-entrypoint-initdb.d/init.sql
+        bind:
+          create_host_path: true
+  redis:
+    container_name: blog_redis
+    image: redis:7-alpine
+    networks:
+      default: null
+    ports:
+      - mode: ingress
+        target: 6379
+        published: "6379"
+        protocol: tcp
+    volumes:
+      - type: volume
+        source: redis_data
+        target: /data
+        volume: {}
+networks:
+  default:
+    name: blog-with-db_default
+volumes:
+  postgres_data:
+    name: blog-with-db_postgres_data
+  redis_data:
+    name: blog-with-db_redis_data

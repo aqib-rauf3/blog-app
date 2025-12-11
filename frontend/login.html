@@ -1,0 +1,32 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Login - DevBlog</title> 
+    <link rel="stylesheet" href="css/style.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> 
+</head> 
+<body style="background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); min-height: 100vh; display: flex; align-items: center; justify-content: center;"> 
+    <div style="background: white; padding: 40px; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); width: 100%; max-width: 400px;"> 
+        <h2 style="text-align: center; color: #2c3e50; margin-bottom: 30px;">Login to DevBlog</h2> 
+        <form id="login-form"> 
+            <div style="margin-bottom: 20px;"> 
+                <label style="display: block; margin-bottom: 5px; color: #555;">Username</label> 
+                <input type="text" id="username" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;" required> 
+            </div> 
+            <div style="margin-bottom: 20px;"> 
+                <label style="display: block; margin-bottom: 5px; color: #555;">Password</label> 
+                <input type="password" id="password" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;" required> 
+            </div> 
+            <button type="submit" style="width: 100%; padding: 12px; background: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px;">Login</button> 
+        </form> 
+        <div id="login-message" style="margin-top: 20px; padding: 10px; border-radius: 5px; display: none;"></div> 
+        <div style="text-align: center; margin-top: 20px;"> 
+            <p>Don't have an account? <a href="register.html" style="color: #3498db;">Register here</a></p> 
+            <p><a href="index.html" style="color: #666;"><i class="fas fa-arrow-left"></i> Back to Home</a></p> 
+        </div> 
+    </div> 
+    <script src="js/auth.js"></script> 
+</body> 
+</html> 

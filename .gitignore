@@ -1,0 +1,22 @@
+﻿# Python
+__pycache__/
+*.pyc
+.env
+.venv
+
+# Docker
+volumes/
+postgres_data/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project specific files
+frontend/final_test.html
+nginx.conf
+nginx-simple.conf
+
+# Temp files
+*.log
+*.tmp

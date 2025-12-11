@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>API Connection Test</title>
+</head>
+<body>
+    <h1>Testing API Connection from Frontend</h1>
+    <div id="result">Testing...</div>
+    <script>
+        // Try different methods to call the API
+        async function testAPI() {
+            const resultDiv = document.getElementById('result');
+            
+            // Method 1: Direct call
+            try {
+                const response = await fetch('http://localhost:5001/api/health');
+                const data = await response.json();
+                resultDiv.innerHTML = '✓ Direct API call: ' + data.message;
+                resultDiv.style.color = 'green';
+                return;
+            } catch (error1) {
+                console.log('Direct call failed:', error1.message);
+            }
+            
+            // Method 2: Through nginx proxy (/api path)
+            try {
+                const response = await fetch('/api/health');
+                const data = await response.json();
+                resultDiv.innerHTML = '✓ Proxy API call: ' + data.message;
+                resultDiv.style.color = 'green';
+                return;
+            } catch (error2) {
+                console.log('Proxy call failed:', error2.message);
+            }
+            
+            // Method 3: Try with CORS headers
+            try {
+                const response = await fetch('http://localhost:5001/api/health', {
+                    mode: 'cors',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                const data = await response.json();
+                resultDiv.innerHTML = '✓ CORS API call: ' + data.message;
+                resultDiv.style.color = 'green';
+                return;
+            } catch (error3) {
+                console.log('CORS call failed:', error3.message);
+            }
+            
+            resultDiv.innerHTML = '✗ All API connection methods failed. Check browser console for details.';
+            resultDiv.style.color = 'red';
+        }
+        
+        testAPI();
+    </script>
+</body>
+</html>
